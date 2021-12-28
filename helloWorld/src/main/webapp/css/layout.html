@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css/layout.html</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-size: 10px;
+        }
+
+        header {
+            height: 50px;
+            background-color: wheat;
+        }
+
+        nav {
+            width: 25%;
+            height: 60vh;
+            float: left;
+            background-color: rgb(241, 167, 241);
+
+        }
+
+        main {
+            width: 50%;
+            height: 60vh;
+            float: left;
+            background-color: rgb(240, 240, 178);
+        }
+
+        aside {
+            width: 25%;
+            float: left;
+            height: 60vh;
+            background-color: rgb(177, 253, 228);
+        }
+
+        aside>ul {
+            list-style-type: none;
+        }
+
+        aside li {
+            font-size: .9em;
+            padding-left: 15px;
+            margin-top: 10px;
+            color: red;
+            
+            
+        }
+
+        footer {
+            clear: both;
+            background-color: tomato;
+
+        }
+
+        header>ul {
+            list-style-type: none;
+
+        }
+
+        header li {
+            display: inline-block;
+            width: 20%;
+            margin: 20px 5px 15px;
+        }
+
+        .menu {
+            font-size: .9em;
+            padding-left: 15px;
+            margin-top: 10px;
+        }
+
+        .category {
+            padding-bottom: 7px;
+            background-color: rgb(223, 218, 253);
+            margin-bottom: 20px;
+            width: 72%;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <ul>
+            <li>Home</li>
+            <li>게시판</li>
+            <li>FAQ</li>
+            <li>로그인</li>
+        </ul>
+    </header>
+    <nav>
+        <div class="menu">
+            <div class="category"><a href="#">게시판 카테고리</a></div>
+            <div class="category active"><a href="#">자유게시판</a></div>
+            <div class="category"><a href="#">리뷰게시판</a></div>
+            <div class="category"><a href="#">네이버 동영상 게시판</a></div>
+            <div class="category"><a href="#">자료실 게시판</a></div>
+        </div>
+    </nav>
+    <main>
+        <table>
+            <caption>자유게시판</caption>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>제목</th>
+                    <th>글쓴이</th>
+                    <th>작성시간</th>
+                    <th>좋아요</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>4</td>
+                    <td class="contents">탭 메뉴 이미지</td>
+                    <td class="sm">아임웹</td>
+                    <td class="sm time">2017-12-06</td>
+                    <td class="sm">3</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td class="contents">응원합니다!</td>
+                    <td class="sm">아임웹</td>
+                    <td class="sm time">2017-11-20</td>
+                    <td class="sm">12</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td class="contents">이번에 가즈아앙아!</td>
+                    <td class="sm">아임웹</td>
+                    <td class="sm time">2017-11-20</td>
+                    <td class="sm">23</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td class="contents">제목만 보여주기</td>
+                    <td class="sm">아임웹</td>
+                    <td class="sm time">2017-11-20</td>
+                    <td class="sm">23</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <button>글쓰기</button>
+    </main>
+    <aside>
+        <ul>
+            <li>디자인모드</li>
+            <li>빠른 시작 가이드</li>
+            <li>디자인 모드란?</li>
+            <li>라면이란?</li>
+        </ul>
+    </aside>
+    <footer>
+        <p>상호명 : (주)아이웹 | 대표이사 : 열라면</p>
+        <p>본사 : 서울특별시 오뚜기 열라면 너구리 잡길 99-9</p>
+        <p>고객지원 : 불량품은 알아서 버리고 먹어라</p>
+    </footer>
+</body>
+
+</html>
