@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    table, tfoot{
+        /* text-align: center; */
+        border: 1px solid gray;
+    }
+
+    td{
+        width: 200px;
+    }
+</style>
+
+<body>
+
+    <table>
+        <caption>요안도라 객실</caption>
+        <thead>
+        <tr>
+            <th>방 이름</th>
+            <th>대상</th>
+            <th>크기</th>
+            <th>가격</th>
+        </tr>
+    </thead>
+        <tbody>
+        <tr>
+            <td>유채방</td>
+            <td>여성 도미토리</td>
+            <td rowspan="3">4인실</td>
+            <td rowspan="4">1인 20,000원</td>
+        </tr>
+        <tr>
+            <td rowspan="2">동백방</td>
+            <td>동성 도미토리</td>
+        </tr>
+        <tr>
+            <td>가족 1팀</td>
+        </tr>
+        <tr>
+            <td>천혜향방</td>
+            <td> - </td>
+            <td>2인실</td>
+        </tr>
+    </tbody>
+        <tfoot >
+            <th><b>바깥채 전체를 렌트합니다.</b></th>
+        </tfoot>
+    </table>
+
+
+    <br>
+    <br>
+
+    
+    <h1>상품 구성</h1>
+    <table>
+        <caption>선물용과 가정용 상품 구성</caption>
+        <colgroup>
+            <col style="background-color: salmon;">
+            <col style="width: 50px;">
+            <col span="2" style="background-color: seagreen; width: min-content;">
+            <col>
+        </colgroup>
+        <thead>
+            <tr>
+                <t>용도</th>
+                <th>중량</th>
+                <th>개수</th>
+                <th>가격</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="2">선물용</td>
+                <td>kg</td>
+                <td>10~20과</td>
+                <td>0,000원</td>
+            </tr>
+            <tr>
+                <td>kg</td>
+                <td>10~20과</td>
+                <td>0,000원</td>
+            </tr>
+            <tr>
+                <td rowspan="2">가정용</td>
+                <td>kg</td>
+                <td>10~20과</td>
+                <td>0,000원</td>
+            </tr>
+            <tr>
+                <td>kg</td>
+                <td>10~20과</td>
+                <td>0,000원</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <h2>먹거리</h2>
+    <table class="newt">
+        <colgroup>
+        <col style="background-color: seagreen;" >
+        <col style="background-color: sienna;" >
+        <col style="background-color: thistle;" >
+    </colgroup>
+        <tr>
+            <th>입춘 천냥 국수</th>
+            <td>11:00 ~16:00</td>
+            <td>목관아 주차장</td>
+        </tr>
+        <tr>
+            <th>제주향토음식</th>
+            <td rowspan="3">10:30 ~17:00</td>
+            <td rowspan="3">관덕정 마당</td>
+        </tr>
+        <tr>
+            <th>입춘 주전부리</th>
+        </tr>
+        <tr>
+            <th>차나눔</th>
+        </tr>
+    </table>
+
+    <h2>이미지 넣어보기  </h2>
+        <img src="/helloWorld/img1.png" alt="123">
+        <br>
+        <img src="/helloWorld/img1.png" alt="123" width="250">
+        <br>
+        <img src="/helloWorld/img1.png" alt="123" width="30%">
+  
+
+
+</body>
+</html>
