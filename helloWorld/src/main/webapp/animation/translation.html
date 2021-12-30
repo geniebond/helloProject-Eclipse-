@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css/translation.html</title>
+
+    <style>
+        #contatiner {
+            width: 800px;
+            height: 200px;
+            margin: 20px auto;
+
+        }
+
+        .origin {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            float: left;
+            margin: 40px;
+
+        }
+
+        .origin > div {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            transition: all 3s;
+        }
+
+        #movex:hover {
+            /* transform: translateX(50px); */
+            /* transform: scaleX(1.5); */
+            /* transform: rotate(40deg);
+            transform: skew(40deg); */
+            transform: rotatex(30deg);
+            transform: rotatey(20deg);
+            transform: rotatez(45deg);
+
+        }
+
+        #movey:hover {
+            /* transform: translateY(50px); */
+            transform: scaleY(.7);
+            transform: rotate(-70deg);
+        }
+
+        #movexy:hover {
+            /* transform: translate(50px, 50px); */
+            transform: scale(1.5, .5);
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div id="container">
+        <div class="origin" style="perspective: 300px;">
+            <div id="movex"><img style width:50px; src="/helloWorld/check.png" alt=""></div>
+        </div>
+
+        <div id="container">
+            <div class="origin">
+                <div id="movey"></div>
+            </div>
+
+            <div id="container">
+                <div class="origin">
+                    <div id="movexy"></div>
+                </div>
+            </div>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css/read1.html</title>
+
+    <style>
+        #wrapper {
+            display: grid;
+            grid-template-columns: 200px 200px 200px;
+            grid-template-rows: minmax(150px, auto) minmax(150px, auto)
+
+        }
+
+        .items {
+            padding: 10px;
+            background-color: yellow;
+            border: 1px solid blue;
+
+        }
+
+        .dropper{
+            width: 700px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 100px);
+            
+            grid-template-areas: 
+            "box1 box1 box1"
+            "box2 box3 box3"
+            "box2 . box4";
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <div class="items">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Culpa commodi molestiae fugit labore nesciunt id sequi dolorum ipsa quasi, 
+            quo maiores sunt harum explicabo cupiditate vitae quis ad quae sit!  </div>
+
+        <div class="items">adipisicing elit. Odio, dolor pariatur. </div>
+        <div class="items">Consectetur quas quidem exercitationem.</div>
+        <div class="items">reprehenderit quo corrupti ex, fucking?</div>
+        <div class="items">Laborum voluptas obcaecati odio rerum  </div>
+    </div>
+
+
+    <br>
+    <br>
+
+    <div class="dropper">
+        <div class="box">box1</div>
+        <div class="box">box2</div>
+        <div class="box">box3</div>
+        <div class="box">box4</div>
+    </div>
+</body>
+
+</html>
