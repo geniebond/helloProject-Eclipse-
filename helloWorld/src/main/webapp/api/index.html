@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 2022-01-10 수업 XHR?? API ?/ 공공데이터를 활용 -->
+    <!-- html 을 -> javascript로 만드는 수업 -->
+
+    <div id="show"></div> 
+    <!--  공공데이터를 위 div show에 붙임 -->
+
+    <script src="MOCA_DATA.js"></script>
+
+    
+    <script>
+        function makePage(aryData) {
+            // [{ID:??, first_)name:??, last_name:??, email:??}]
+            //-> table 형식.
+            table > thead, tbody > tr > th, td 
+
+            let ul = document.createElement('ul');
+            aryData.forEach(function (item) {
+                let li = document.createElement('li');
+                let text = document.createTextNode(`${item.id} - ${item.first_name} - ${item.last_name}`);
+                li.appendChild(text);
+                ul.appendChild(li);
+            });
+            console.log(ul);
+            document.getElementsByTagName('body')[0].appendChild(ul);
+            
+
+            ///============내가 만든 table 코드 
+            // let tbl = document.createElement('table');
+            // tbl.setAttribute('border', '1');
+
+            // let thd = document.createElement('thead');
+            // let tr = document.createElement('tr');
+            // tbl.appendChild(tr);
+
+            // aryData.forEach(function (item) {
+            //     let th = documnet.createElement('th');
+            //     let thText = document.createTextNode(`${item.address} - 
+            //     ${item.centerName} - ${item.centerType} - ${item.createAt} 
+            //     - ${item.facilityName}- ${item.id} - ${item.lat} - ${item.lng} 
+            //     - ${item.org} = ${item.phoneNumber}- ${item.sido} - ${item.sigungu} 
+            //     - ${item.updatedAt} - ${item.zipCode}`);
+                
+            //     th.appendChild(thText);
+            //     tr.appendChild(th);
+            //     tbl.appendChild(thd);
+
+            //     let tbd = document.createElement('tbody');
+            //     aryData.forEach(function (item) {
+            //         let td = document.createElement('td');
+            //         let tdText = document.createTextNode(`${item.address} - 
+            //     ${item.centerName} - ${item.centerType} - ${item.createAt} 
+            //     - ${item.facilityName}- ${item.id} - ${item.lat} - ${item.lng} 
+            //     - ${item.org} = ${item.phoneNumber}- ${item.sido} - ${item.sigungu} 
+            //     - ${item.updatedAt} - ${item.zipCode}`);
+
+            //         td.appendChild(tdText);
+            //         th.appendChild(td)
+            //     })
+            //     tbd.appendChild(tr);
+            // })
+            // tbl.appendChild(tbd);
+        }
+
+        // 공공데이터 자료를 -> 보여줄 항목들 정의;
+        const fields = ['id', 'centerName', 'address', 'phoneNumber', 'sido', 'sigungu'];
+
+        function showCenterList(data) { // showCenterList의 새로운 function
+            //전체 카운트 : data.currentCount : 284
+            // 현재페이지 : data.page : 1
+            // 전체데이터 : data.data : 284건의 접종 센터 정보. 
+
+
+            let table = document.createElement(`table`);
+            table.setAttribute('border', '1');
+            table.setAttribute('id', 'tbl');
+
+            let thead = document.createElement(`thead`);
+            let tbody = document.createElement(`tbody`);
+            
+            // table 의 하위 요소 thead / tbody 추가
+            table.append(thead, tbody); 
+            // thead
+            let tr = document.createElement(`tr`);
+            
+            fields.forEach(function (field) {
+                let td = document.createElement(`th`);
+                let text = document.createTextNode(field.toUpperCase);
+                td.append(text);
+                tr.append(td);
+            });
+            thead.append(tr);
+            
+            // tbody 작성
+            data.data.forEach('show').append(table);
+
+                data.data.forEach(function (item) {
+                    let tr = document.createElement('tr');
+                    fields.forEach(function (field) {
+                        let td = document.createElement('td');
+                        let text = document.createTextNode(item[field]);
+                        td.append(text);
+                        tr.append(td);
+                    });
+                    tbody.append(tr);
+                });
+
+            document.getElementById('show').append(table);
+        }
+
+        // Asynchoronous Javascript and xml (ajax);
+        let url = `https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=284&serviceKey=vEtzmMvrEZ%2FqbnefkvnCnXg9DJTIblenMdkvb9PGu%2B0TQGJNnikhPZ6c7DccLd9MRGamHkFHlMLV59CNrvgs1A%3D%3D`;
+        let xhtp = new XMLHttpRequest();
+        xhtp.onreadystatechange = function () { //요청에 대한 응답을 받는 이벤트 리스너 
+            if (xhtp.readyState == 4 && xhtp.status == 200) { // 200이란 http 상태 코드를 뜻함
+                console.log('readyState : ' + xhtp.readyState);// 요청 시 xhr 객체(코드의 첫 줄) 각 상태별로 readyState가 변경됨 
+                console.log('status: ' + xhtp.status);
+                let data = JSON.parse(xhtp.responseText)
+
+                // console.log(xhtp.responseText);
+                console.log(data);
+
+                // makePage(data); 
+                showCenterList(data); //접종센터 리스트를 가져옵니다. 
+
+            }
+
+        }
+        xhtp.open('get', url);
+        xhtp.send(); // open요청 후 -> send로 요청 전송 
+    </script>
+
+</body>
+
+</html>
