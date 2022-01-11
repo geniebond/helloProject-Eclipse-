@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI_test_01_11</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        #more {
+            border: 3px solid gold;
+            width: 60%;
+            height: 280px;
+            float: left;
+            margin: 5px 5px;
+            padding: 5px 5px;
+        }
+
+        .line {
+            margin: 15px 10px;
+        }
+
+        .line>label {
+            background-color: gold;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.2em;
+            border: 1px solid none;
+            word-spacing: 3px;
+
+            display: inline-block;
+            line-height: 35px;
+            text-align: center;
+
+            width: 20%;
+            height: 35px;
+            box-shadow: 0px 3px 4px goldenrod;
+        }
+
+        .line>input {
+
+            display: inline-block;
+            margin-left: 15px;
+
+            width: 70%;
+        }
+
+        #bts {
+            float: left;
+            /* border: 3px solid none; */
+            margin: 15px;
+            padding: 10px;
+            width: 100px;
+            height: 100px;
+        }
+
+        #bts>button {
+            float: left;
+            width: 130px;
+            height: 70px;
+
+            margin-top: 33px;
+            margin-left: 32px;
+        }
+
+        #list {
+            float: left;
+            border: 3px solid goldenrod;
+            width: 1000px;
+            height: 400px;
+            margin-left: 5px;
+            margin-top: 5px;
+        }
+
+        #list>table {
+            width: 80%;
+            margin: 10px auto;
+            color: midnightblue;
+        }
+
+        th {
+            background-color: lightgray;
+            color: white;
+        }
+
+        th, td {
+            float: clear;
+            border: 1px soild gray;
+            padding: 10px 5px;
+            margin-top: 10px;
+            
+            font-weight: lighter;
+            text-align: center;
+            
+            width: 100px;
+            height: 50px;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- 2022.01.11 - 3강의실 - 수강생 : 오진우 -->
+
+    <!--  -->
+    <div id="show">
+        <div id="more">
+            <div class="line">
+                <label for="">도서코드</label>
+                <input type="text" name="bcode">
+            </div>
+
+            <div class="line">
+                <label for="">도서명</label>
+                <input type="text" name="bname">
+            </div>
+
+            <div class="line">
+                <label for="">저자</label>
+                <input type="text" name="bauthor">
+            </div>
+
+            <div class="line">
+                <label for="">출판사</label>
+                <input type="text" name="bcompany">
+            </div>
+
+            <div class="line">
+                <label for="">가격</label>
+                <input type="text" name="bprice">
+            </div>
+        </div>
+
+         <!-- 저장, 삭제 버튼  bts -->
+        <div id="bts">
+            <button>저 장</button>
+            <button>선택/삭제</button>
+        </div>
+
+        <!-- list -->
+        <div id="list"></div>
+    </div>
+
+    <!-- js파일  -->
+    <script src="test.js"></script>
+
+</body>
+</html>

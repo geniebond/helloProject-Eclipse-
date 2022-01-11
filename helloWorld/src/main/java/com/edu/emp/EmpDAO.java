@@ -22,7 +22,7 @@ public class EmpDAO extends DAO {
 		psmt.setString(1, empId);
 		
 		int r = psmt.executeUpdate();
-		if(r>0) {
+		if(r > 0) {
 			return true;
 		} else {
 			return false;

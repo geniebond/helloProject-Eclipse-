@@ -10,17 +10,38 @@
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=249aa5ede0c27be5206535716dcace35"></script>
 <script>
+
+    //index.html 의 lat, lng = map 위도 경도 내용 추가
+    let url = location.href;
+    console.log(url);
+    let x = url.indexOf('lat'); //위도 경도 값의 위치를 indexof로 찾아봅니다. 
+    let amp = url.indexOf('&');
+    let y = url.indexOf('lng');
+    
+    let amp2 = url.lastIndexOf('&'); // facilityName 네임 변경건 
+
+    console.log(x, y);
+    console.log(url.substring(x + 4, amp)); ///x+4에서 9개까지 읽어옴
+    console.log(url.substr(y + 4));
+
+    let lat = url.substring(x + 4, amp);
+    let lng = url.substring(y + 4, amp2);
+
+    let facility = url.substring(amp2 + 10); // facilityName 네임 변경건
+
+
+
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(parseFloat(lat), (lng)), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };
 
 var map = new kakao.maps.Map(mapContainer, mapOption);
 
 // 마커가 표시될 위치입니다 
-var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
-
+var markerPosition  = new kakao.maps.LatLng(parseFloat(lat), parseFloat(lng)); //기존 좌표를 위의 lat, lng로 변경
+                                            //위 좌표 - parseFloat(lat), parseFloat(lng로 변경
 // 마커를 생성합니다
 var marker = new kakao.maps.Marker({
     position: markerPosition
@@ -29,9 +50,9 @@ var marker = new kakao.maps.Marker({
 // 마커가 지도 위에 표시되도록 설정합니다
 marker.setMap(map);
 
-var iwContent = '<div style="padding:5px;">Hello World! <br><a href="https://map.kakao.com/link/map/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-    iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
-
+var iwContent = `'<div style="padding:5px;">${decodeURIComponent(facility)} <br><a href="https://map.kakao.com/link/map/${decodeURIComponent(facility)},${parseFloat(lat)},${parseFloat(lng)}" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/${decodeURIComponent(facility)},${parseFloat(lat)},${parseFloat(lng)}" style="color:blue" target="_blank">길찾기</a></div>`, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+    iwPosition = new kakao.maps.LatLng(parseFloat(lat), parseFloat(lng)); //인포윈도우 표시 위치입니다
+            //위 좌표 - hello! wolrd! => ${facility}센터이름으로 변경 후 한글처리 또 변경 / parseFloat(lat), parseFloat(lng로 변경
 // 인포윈도우를 생성합니다
 var infowindow = new kakao.maps.InfoWindow({
     position : iwPosition, 
