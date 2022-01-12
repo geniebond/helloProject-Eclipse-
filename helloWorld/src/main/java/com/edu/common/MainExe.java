@@ -32,7 +32,7 @@ public class MainExe {
 		//dao.updateEmp(vo);
 		
 		//삭제
-		dao.deleteEmp(209);
+//		dao.deleteEmp(209);
 		
 		
 		

@@ -55,7 +55,7 @@ public class RegisterServlet extends HttpServlet {
 		vo.setLastName(ln);
 		vo.setSalary(Integer.parseInt(sa));
 		
-		dao.insertEmp(vo);
+		//dao.insertEmp(vo);
 		response.getWriter().print("<h2>처리완료</h2>");
 		
 		//전체 출력

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset='utf-8' />
+<link href='../lib/main.css' rel='stylesheet' />
+<script src='../lib/main.js'></script>
+<script>
+	// 2022.01.02 - 수업 캘린더 따라해보기?
+	// 만들기 위해선 -> 오라클 테이블 자료 -> 이클립스(서블릿을 만들고) -> html해야함?
+
+	var eventData = ''; //값을 넣어주기
+
+	document.addEventListener('DOMContentLoaded', function() {
+		console.log(document.getElementById('calendar'));
+		//기존에 있던 내용을 자르고 -> showcalendar 펑션으로 이동시킴.
+	});
+
+	//ajax 호출
+	var xhtp = new XMLHttpRequest();
+	xhtp.open('get', '../../ScheduleServlet'); // 폴더 위치를 보고 2단계 위 호출
+	xhtp.send();
+	xhtp.onload = function() {
+		console.log(xhtp.responseText);
+		eventData = JSON.parse(xhtp.responseText);
+		showCalendar(); // new function 여기에 넣기 
+	}
+	// ajax 호출 후 -> 아래 부분을 실행
+
+	// 오라클 디벨로퍼에 지정해놓은 테이블값을 불러옴. 
+	function showCalendar() {
+		var calendarEl = document.getElementById('calendar');
+		var calendar = new FullCalendar.Calendar(
+				calendarEl,
+				{
+					headerToolbar : {
+						left : 'prev,next today',
+						center : 'title',
+						right : 'dayGridMonth,timeGridWeek,timeGridDay'
+					},
+					initialDate : '2022-01-12',
+					navLinks : true, // can click day/week names to navigate views
+					selectable : true,
+					selectMirror : true,
+					select : function(arg) {
+						var title = prompt('Event Title:');
+						if (title) {
+							console.log(arg);
+							// 등록하기 위한 아작스 코드 호출해야합니다. 
+							var regAjax = new XMLHttpRequest();
+							regAjax.open('post', '../../ScheduleServlet');
+							regAjax.setRequestHeader('Content-type',
+									'application/x-www-form-urlencoded');
+							//위 'post'일 경우는 따로 해당 줄을 추가
+							regAjax
+									.send(`action=insert&title=${title}&start=${arg.startStr}&end=${arg.endStr}`);
+							//sned가 있어야 위 등록서블릿이 실행됨
+							regAjax.onload = function() { //실행 결과를 받아와서 처리해주는 코드 
+								var result = JSON.parse(regAjax.responseText);
+								if (result.retCode == 'Success') {
+									calendar.addEvent({
+										title : title,
+										start : arg.start,
+										end : arg.end,
+										allDay : arg.allDay
+									})
+								} else {
+									// 실행이 실패일 경우. 
+									alert('오류가 발생했습니다.');
+								}
+							}// end of onload.
+
+							//하단은 - 화면에 추가하는 코드 입니다. 
+						} // end of if script
+						calendar.unselect()
+					},
+					eventClick : function(arg) {
+						var title = arg.event._def.title;
+						console.log(arg.event._def.title); // 작성전에 출력값이 뭔지 확인 
+						if (confirm('Are you sure you want to delete this event?')) {
+							//데이터삭제 처리.. 구역
+							var delAjax = new XMLHttpRequest();
+							delAjax.open('post', '../../ScheduleServlet');
+							delAjax.setRequestHeader('Content-type',
+									'application/x-www-form-urlencoded');
+							//delAjax.send(`action=delete&title=${title}`);
+							delAjax.send(`title=${title}&action=delete`);
+							
+							delAjax.onload = function() {
+								var result = JSON.parse(delAjax.responseText);
+								if(result.delCode == 'Success') {
+								// 정상적으로 삭제가 된다면 -> 
+								arg.event.remove();									
+								} else {									
+								// 에러발생.
+								alert('삭제 에러가 발생했습니다.');
+								}
+							}
+						}
+						//calendar.delete()
+					},
+					editable : true,
+					dayMaxEvents : true, // allow "more" link when too many events
+					events : eventData
+				// [{title : 'value'}]
+				});
+
+		calendar.render();
+	}
+</script>
+<style>
+body {
+	margin: 40px 10px;
+	padding: 0;
+	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
+#calendar {
+	max-width: 1100px;
+	margin: 0 auto;
+}
+</style>
+</head>
+
+<body>
+
+	<div id='calendar'></div>
+
+</body>
+
+</html>

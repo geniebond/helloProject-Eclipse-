@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>api/exe.html</title>
+
+    <!-- style -- style --style --style --style --style --style --style --style --  -->
+    <style>
+        #show>span {
+            display: inline-block;
+            width: 120px;
+            background-color: gold;
+            padding: 5px;
+            margin: 3px;
+        
+            text-align: center;
+
+        }
+    </style>
+
+    <!-- script --script --script --script --script --script --script --script -- -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var show = document.getElementById('show');
+
+            var data =
+                `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus saepe necessitatibus accusantium sed laborum, voluptas, aspernatur dolorum minima rem amet nulla error excepturi fugit tempora aliquam nesciunt sapiente, nobis impedit?`;
+            var dataAry = data.split(' ');
+            console.log(dataAry);
+
+            dataAry.forEach(function (shortWord) {
+                var span = document.createElement('span');
+                span.innerText = shortWord;
+                show.appendChild(span);
+            });
+
+            // 사용자 입력 input
+            var inputElem = ''; // 고민
+            inputElem.addEventListener('change', delFnc);
+            var heading = document.querySelector(dataAry);
+            heading.onclick = function () {
+                heading.style.color = "red";
+            }
+
+            function delFnc() {
+                // 화면의 span을 읽어와서.
+                var wordAry = document.querySelector('body>span'); // 고민
+                console.log(wordAry);
+
+
+                // 사용자의 입력값 -> value 속성.
+                var searchWord = '';
+
+                wordAry.forEach(function () {
+                    //비교해서 값이 같으면 element.remove();
+                });
+
+            }
+        });
+
+    </script>
+
+</head>
+
+<body>
+    <!-- 2022.01.12 수업 -->
+
+    <input type="text" name="inputWord" id="inputWord">
+    <button id="searchBtn">삭 제</button>
+    <button id="addBtn">추 가</button>
+    <br>
+
+    <div id="show"></div>
+
+</body>
+
+</html>

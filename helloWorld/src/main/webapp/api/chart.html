@@ -1,0 +1,86 @@
+<html>
+
+<!-- 2022-01-12 -- google chart 수업 // 통계데이터 차트? -->
+
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+        // 받아온 employee_info.json자료를 여기로 가져오기 
+        var memberByDept = []; // -> [[sales,]] 
+        var titleAry = ['Department', 'CntByDept'];
+        memberByDept.push(titleAry);
+
+
+        // employee_info.json - 자료를 가져오기 위한 ajax호출
+        var xhtp = new XMLHttpRequest();
+        xhtp.onload = function () {
+            let result = JSON.parse(xhtp.responseText); // parseing / 파싱 -자바 스크립트 오브젝트 타입으로 변환?
+            console.log(result); // 자료값이 나오는지 콘솔로 확인. 
+
+            // 결과값의 department, 1 => memberByDept : ['sevice', 1]; 
+            //                                         ['Accounting', 1];
+            result.forEach(function (member) { // foreach + function 합쳐서
+                let cnt = 0;
+                console.log(member.department); // 분류된 부서들 자료 log 확인
+                for (let i = 0; i < memberByDept.length; i++) {
+                    // memberByDept 배열에 부서가 추가된 이력이 있는지 확인하고
+                    // 있다면 1을 추가 // 없다면 -> 새로운 배열을 추가 
+                    if (memberByDept[i][0] == member.ip_address) { //notepad에 있던 부서명 이름을 여기 대입
+                        cnt = memberByDept[i][2];
+                        memberByDept[i][1] = ++cnt;
+                        break;
+                    }
+                }
+                // 동일한 값이 없다면.. 
+                // } else {
+                if (cnt == 0) {
+                    let departAry = [];
+                    departAry.push(member.ip_address); //부서에 자료 추가 넣기
+                    departAry.push(1); //인원 자료 추가 넣기 
+                    memberByDept.push(departAry);
+                }
+            });
+            // 밑에 function drawChart에 있던 3줄 내용 여기로 당겨서 가져옴
+            google.charts.load('current', {
+                'packages': ['corechart']
+            });
+            google.charts.setOnLoadCallback(drawChart);
+            //
+
+            console.log(memberByDept); // [['Sales', 2]]...................
+
+        }
+        xhtp.open('get', 'employee_info.json'); // 다운받은 제이슨 파일 이름 설정 - 가져오기
+        xhtp.send(); // 호출
+
+
+
+        function drawChart() {
+
+            var data = google.visualization.arrayToDataTable(memberByDept);
+            //     ['Task', 'Hours per Day'],
+            //     ['일하는시간', 11],
+            //     ['식사시간', 2],
+            //     ['Commute', 2],
+            //     ['Watch TV', 2],
+            //     ['Sleep', 7]
+            // ]);
+            // 위 배열은 기존에 사용하던 [{}] -> [[]] 로 모양이 조금 다르다. 
+
+            var options = {
+                title: '부서별 사원수' // 출력될 타이틀 이름
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+</body>
+
+</html>
