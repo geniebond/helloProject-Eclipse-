@@ -32,9 +32,7 @@ public class CommentUpdateController implements Controller {
 		
 		RequestDispatcher rs = req.getRequestDispatcher("comment/commentList.jsp"); //매개값으로 이동할 페이지를 지정하는 메소드  
 		rs.forward(req, resp);
-		
-		
-		
+				
 	}
 
 }

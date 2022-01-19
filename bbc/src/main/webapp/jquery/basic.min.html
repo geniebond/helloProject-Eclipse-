@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>basic.min.html</title>
+
+    <script src="./jquery-3.6.0.min.js"></script>
+
+    <style>
+        #show {
+            color: lightcoral;
+            
+        }
+    </style>
+
+    <script>
+        const members = [{
+            fullName: "빨강머리 강백호",
+            age: 18,
+            phone: "010-1234-5678",
+        }, {
+            fullName: "사막여우 서태웅",
+            age: 18,
+            phone: "010-3333-6666",
+        }, {
+            fullName: "불꽃남자 정대만",
+            age: 19,
+            phone: "010-5555-4444",
+        }];
+
+        // document.addeventListener('domc', 'fucntion) {});과 동일
+        $(document).ready(function name(params) {
+
+            //tag안에 직접 속성을 줄수 있음
+            let tbl = $('<table id="tbl">').attr('border', 1);
+
+            members.forEach(function (item) {
+                console.log(item);
+                let tr = $('<tr>').append(
+                    $('<td>').text(item.fullName), // td 홍길동 </td
+                    $('<td>').text(item.age), //td 나이 </td
+                    $('<td>').text(item.phone), //td 연락처 </td
+                    $('<td>').html($('<button>').text('삭 제').click(delfnc)) // <td><button</button<td>
+                );
+                tr.mouseover(mouseOverFnc).mouseout(mouseOutFnc);
+                tbl.append(tr);
+            });
+            // $('#show').append(tbl);
+            $('div').eq(1).append(tbl);
+
+            function delfnc() {
+                console.log('defn');
+                console.log(this);
+                $(this).parent().parent().remove();
+
+                //this 는 button 태그 -> 그 부모는 td태그 -> 또 그위에 태그는 tr태그가
+                // 됩니다. 요곤 중요하니 이해해야 합니다.  " button>td<tr "
+            }
+            //마우스 오버
+            function mouseOverFnc() {
+                console.log(this);
+                $(this).css('background-color', 'yellow');
+            }
+
+            //마우스 아웃
+            function mouseOutFnc() {
+                console.log(this);
+                $(this).css('background-color', '');
+            }
+            // delfnc();
+        });
+    </script>
+</head>
+
+<body>
+
+    <div id="show">1</div>
+    <div id="show">2</div>
+    <div id="show">3</div>
+    <div id="show">4</div>
+</body>
+
+</html>

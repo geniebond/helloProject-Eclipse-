@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>basic.html</title>
+    <script src="./jquery-3.6.0.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', loadEventjQuery);
+
+        function loadEvent() {
+
+            const fruits = ['Apple', 'Banana', 'Cherry'];
+            let ul = document.createElement('ul');
+            fruits.forEach(function (item) {
+                let li = document.createElement('li');
+                li.setAttribute('class', item);
+                li.innerText = item;
+                ul.appendChild(li);
+            });
+    
+            document.getElementById('show').appendChild(ul);
+        }
+
+        // $를 사용한 jquery = $(# or . + 이름) => 요소선택: css 선택자
+        // $('<dic>') => 요소생성.
+            // jQuery -> 사용방식은 함수() 로 사용합니다.
+        function loadEventjQuery() {
+            const fruits = ['waterMelon', 'starFruit', 'mandarin'];
+            let ul = $('<ul>'); // $안에 만들고 싶은 태그를 쓰고 
+                fruits.forEach(function (item) {
+                    let li = $('<li>').attr('class', item); // docu.creele(li)와 동일
+                        li.attr('class', item); // attr => setattribute와 동일
+                        li.text(item);
+                        ul.append(li);
+
+                    $('#show').append(ul); // = docu.getelebyid 와 동일
+                });
+        }
+    </script>
+</head>
+<body>
+
+    <div id="show"></div>
+    
+</body>
+</html>
