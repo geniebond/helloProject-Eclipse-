@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.micol.prj.member.service.MemberMapper">
+
+	<!-- memberMapper 인터페이스와 아이디 동일하게 복사합니다   -->
+	<select id="memberSelectList" resultType="co.micol.prj.member.vo.MemberVO">
+		SELECT * FROM member
+	</select>
+	
+	<select id="memberSelect" parameterType="co.micol.prj.member.vo.MemberVO" resultType="co.micol.prj.member.vo.MemberVO">
+		SELECT * FROM member
+		WHERE ID = #{id}
+		<if test="password != null">
+			and password = #{password}
+		</if>
+	</select>
+	
+	
+	<insert id="memberInsert" parameterType="co.micol.prj.member.vo.MemberVO">
+		INSERT INTO member(id, password, name, tel, address)
+		VALUES(#{id}, #{password}, #{name}, #{tel}, #{address})
+	</insert>
+	
+	<delete id="memberDelete" parameterType="co.micol.prj.member.vo.MemberVO">
+		DELETE FROM member WHERE ID = #{id} 
+	</delete>
+	
+	<update id="memberUpdate" parameterType="co.micol.prj.member.vo.MemberVO">
+		UPDATE member 
+		<if test="password != null">set password = #{password}</if>
+		<if test="name != null">set name = #{name}</if>
+		<if test="tel != null">set tel = #{tel}</if>
+		<if test="address != null">set address = #{address}</if>
+		<if test="author != null">set author = #{author}</if>
+	 	WHERE ID = #{id}
+	</update>
+	
+		<!-- 0이면 true(테이블에 자료가 있음) / 1이면 false(테이블에 존재하지않음) -->
+	<select id="isIdCheck" parameterType="String" resultType="boolean">
+		SELECT CASE WHEN COUNT(*) = 1 THEN 0 ELSE 1 END AS t 
+		FROM member WHERE ID = #{id}
+	</select>
+	
+</mapper>
